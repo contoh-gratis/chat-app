@@ -72,7 +72,7 @@ const addMessageToChat = (mySocketId, message) => {
 };
 
 const RoomChat = () => {
-  const { room_id } = useParams();
+  const { roomId } = useParams();
   const [msg, setMsg] = useState('');
   const [count, setCount] = useState(0);
 
@@ -82,7 +82,7 @@ const RoomChat = () => {
     }, 50);
   }, [count]);
 
-  const connectToRoom = (room_id) => {
+  const connectToRoom = (roomId) => {
     const callback = () => {
       sendToSocket("join-room-notification", null, null);
       addNotifJoinToChat('You joined');
@@ -97,7 +97,7 @@ const RoomChat = () => {
       
       const bundle = {
         message: msg.trim(),
-        room_id: room_id,
+        roomId: roomId,
         user: user,
         socketId: socketId,
       }
@@ -110,7 +110,7 @@ const RoomChat = () => {
   const sendToSocket = (topic, message, callback) => {
     const bundle = {
       message: message,
-      room_id: room_id,
+      roomId: roomId,
       user: user,
       socketId: socketId,
     }
@@ -138,7 +138,7 @@ const RoomChat = () => {
 
   useEffect(() => {
     if (!user) return;
-    connectToRoom(room_id);
+    connectToRoom(roomId);
   }, [user]);
 
   return (
