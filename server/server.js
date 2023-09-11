@@ -16,8 +16,10 @@ io.on("connection", socket => {
 
   socket.on("join-room", (message, callback) => {
     const room_id = message.room_id;
+    const user = message.user;
     
     socket.join(room_id);
+    socket.to(room_id).emit("listen-room", "User " + user + " has joined");
 
     if (callback) callback();
   });
@@ -27,13 +29,6 @@ io.on("connection", socket => {
     const user = message.user;
     
     socket.to(room_id).emit("listen-room", "User " + user + " has left");
-  });
-
-  socket.on("join-room-notification", message => {
-    const room_id = message.room_id;
-    const user = message.user;
-
-    socket.to(room_id).emit("listen-room", "User " + user + " has joined");
   });
 
   socket.on("send-message", message => {

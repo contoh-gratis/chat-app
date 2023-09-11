@@ -84,7 +84,6 @@ const RoomChat = () => {
 
   const connectToRoom = (roomId) => {
     const callback = () => {
-      sendToSocket("join-room-notification", null, null);
       addNotifJoinToChat('You joined');
     };
 
