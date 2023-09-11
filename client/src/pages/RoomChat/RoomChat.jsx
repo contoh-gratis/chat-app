@@ -20,8 +20,7 @@ socket.on('listen-message', message => {
   addMessageToChat(socketId, message);
 });
 
-socket.on('listen-join-room', message => {
-  console.log(message);
+socket.on('listen-room', message => {
   addNotifJoinToChat(message);
 });
 
@@ -86,6 +85,7 @@ const RoomChat = () => {
   const connectToRoom = (room_id) => {
     const callback = () => {
       sendToSocket("join-room-notification", null, null);
+      addNotifJoinToChat('You joined');
     };
 
     sendToSocket("join-room", null, callback);
@@ -131,6 +131,7 @@ const RoomChat = () => {
   };
 
   window.onbeforeunload = () => {
+    sendToSocket("leave-room", null, null);
     socket.disconnect();
     console.log("socket disconnected");
   };

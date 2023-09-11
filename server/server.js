@@ -19,12 +19,19 @@ io.on("connection", socket => {
 
     if (callback) callback();
   });
+  
+  socket.on("leave-room", (message) => {
+    const room_id = message.room_id;
+    const user = message.user;
+    
+    socket.to(room_id).emit("listen-room", "User " + user + " has left");
+  });
 
   socket.on("join-room-notification", message => {
     const room_id = message.room_id;
     const user = message.user;
 
-    socket.to(room_id).emit("listen-join-room", "User " + user + " joining");
+    socket.to(room_id).emit("listen-room", "User " + user + " has joined");
   });
 
   socket.on("send-message", message => {
