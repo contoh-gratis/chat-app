@@ -130,7 +130,6 @@ body {
      -moz-user-select: none;
       -ms-user-select: none;
           user-select: none;
-  ms-user-select: none;
   position: relative;
 }
 #chat .chat__conversation-board__message__person__avatar::before {
