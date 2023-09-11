@@ -143,6 +143,9 @@ const RoomChat = () => {
 
   return (
     <div className="--dark-theme" id="chat">
+      <div className="chat__conversation-title">
+        {roomId}
+      </div>
       <div className="chat__conversation-board">
         {
           chats.map((chat, index) => (
@@ -151,7 +154,7 @@ const RoomChat = () => {
                 (chat.type !== "join" && 
                   <div 
                     className={`chat__conversation-board__message-container ${chat.type === "self" ? 'reversed' : ''}`}
-                    key={index}>
+                    key={`index-chat-${index}`}>
                     {
                       (chat.type !== "self" &&
                         <div className="chat__conversation-board__message__person">
@@ -162,7 +165,7 @@ const RoomChat = () => {
                     <div className="chat__conversation-board__message__context">
                       {
                         chat.messages.map((message, messageIndex) => (
-                        <div className="chat__conversation-board__message__bubble" key={ messageIndex }>
+                        <div className="chat__conversation-board__message__bubble" key={`index-message-${messageIndex}`}>
                           <span>
                             {
                               (chat.type === "self" &&

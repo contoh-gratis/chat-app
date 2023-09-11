@@ -2,7 +2,7 @@ import './Homepage.css';
 
 const Homepage = () => {
   return (
-    "homepage"
+    ""
   );
 };
 

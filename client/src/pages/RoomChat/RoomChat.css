@@ -15,7 +15,7 @@
 }
 
 ::-webkit-scrollbar-track {
-  background: var(--chat-background);
+  background: var(--chat-background) !important;
   border-radius: 10px;
 }
 
@@ -277,6 +277,17 @@ body {
   resize: none;
 }
 
+#chat .chat__conversation-title {
+  display: none;
+  color: var(--chat-background);
+  background-color: var(--chat-text-color);
+  margin: auto;
+  text-align: center;
+  padding: .4em;
+  border-radius: 0 0 24px 24px;
+  font-weight: bold;
+}
+
 @media only screen and (max-width: 600px) {
   #chat {
     margin: 0;
@@ -287,5 +298,19 @@ body {
   }
   #chat .chat__conversation-board__message__options {
     display: none !important;
+  }
+}
+
+@media only screen and (max-width: 425px) {
+  #chat {
+    padding: 0px;
+  }
+
+  #chat .chat__conversation-title {
+    display: block;
+  }
+
+  #chat .chat__conversation-board__join-message-container {
+    max-width: 60%;
   }
 }

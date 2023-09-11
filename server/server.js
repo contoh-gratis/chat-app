@@ -12,6 +12,8 @@ const io = require("socket.io")(PORT, {
 });
 
 io.on("connection", socket => {
+  // console.log(socket);
+
   socket.on("join-room", (message, callback) => {
     const room_id = message.room_id;
     
