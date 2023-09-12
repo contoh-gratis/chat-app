@@ -287,6 +287,14 @@ body {
   font-weight: bold;
 }
 
+.copyright {
+  color: #FFF;
+  font-size: 8px;
+  position: absolute !important;
+  right: 8px;
+  bottom: 8px;
+}
+
 @media only screen and (max-width: 600px) {
   #chat {
     margin: 0;
@@ -307,6 +315,10 @@ body {
 
   #chat .chat__conversation-title {
     display: block;
+  }
+
+  .copyright {
+    display: none;
   }
 
   #chat .chat__conversation-board__join-message-container {

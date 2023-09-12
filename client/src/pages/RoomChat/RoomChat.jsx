@@ -27,7 +27,7 @@ socket.on('listen-room', message => {
 const scrollToTarget = () => {
   const targetElement = document.getElementById("scroll-until-here");
   targetElement.scrollIntoView({
-    behavior: 'smooth',
+    behavior: 'auto',
     block: 'start',
     inline: 'nearest'
   });
@@ -141,90 +141,95 @@ const RoomChat = () => {
   }, [user]);
 
   return (
-    <div className="--dark-theme" id="chat">
-      <div className="chat__conversation-title">
-        {roomId}
-      </div>
-      <div className="chat__conversation-board">
-        {
-          chats.map((chat, index) => (
-            <>
-              {
-                (chat.type !== "join" && 
-                  <div 
-                    className={`chat__conversation-board__message-container ${chat.type === "self" ? 'reversed' : ''}`}
-                    key={`index-chat-${index}`}>
-                    {
-                      (chat.type !== "self" &&
-                        <div className="chat__conversation-board__message__person">
-                          <div className="chat__conversation-board__message__person__avatar"><img src={ imageUser } alt="user"/></div>
-                        </div>
-                      )
-                    }
-                    <div className="chat__conversation-board__message__context">
+    <>
+      <div className="--dark-theme" id="chat">
+        <div className="chat__conversation-title">
+          {roomId}
+        </div>
+        <div className="chat__conversation-board">
+          {
+            chats.map((chat, index) => (
+              <>
+                {
+                  (chat.type !== "join" && 
+                    <div 
+                      className={`chat__conversation-board__message-container ${chat.type === "self" ? 'reversed' : ''}`}
+                      key={`index-chat-${index}`}>
                       {
-                        chat.messages.map((message, messageIndex) => (
-                        <div className="chat__conversation-board__message__bubble" key={`index-message-${messageIndex}`}>
-                          <span>
-                            {
-                              (chat.type === "self" &&
-                                message.message
-                              )
-                            }
-                            {
-                              (chat.type !== "self" && messageIndex > 0 &&
-                                message.message
-                              )
-                            }
-                            {
-                              (chat.type === "other" && messageIndex === 0 &&
-                                <>
-                                  <div className="chat__conversation-board__message__person__nickname">{ message.username }</div>
-                                  <div>{ message.message }</div>
-                                </> 
-                              )
-                            }
-                          </span>
-                        </div>
-                        ))
+                        (chat.type !== "self" &&
+                          <div className="chat__conversation-board__message__person">
+                            <div className="chat__conversation-board__message__person__avatar"><img src={ imageUser } alt="user"/></div>
+                          </div>
+                        )
                       }
+                      <div className="chat__conversation-board__message__context">
+                        {
+                          chat.messages.map((message, messageIndex) => (
+                          <div className="chat__conversation-board__message__bubble" key={`index-message-${messageIndex}`}>
+                            <span>
+                              {
+                                (chat.type === "self" &&
+                                  message.message
+                                )
+                              }
+                              {
+                                (chat.type !== "self" && messageIndex > 0 &&
+                                  message.message
+                                )
+                              }
+                              {
+                                (chat.type === "other" && messageIndex === 0 &&
+                                  <>
+                                    <div className="chat__conversation-board__message__person__nickname">{ message.username }</div>
+                                    <div>{ message.message }</div>
+                                  </> 
+                                )
+                              }
+                            </span>
+                          </div>
+                          ))
+                        }
+                      </div>
                     </div>
-                  </div>
-                )
-              }
-              {
-                (chat.type === "join" && 
-                  <div 
-                    className="chat__conversation-board__join-message-container" 
-                    key={`index-join-${index}`}>
-                      {chat.message}
-                  </div>
-                )
-              }
-            </>
-          ))
-        }
-        <div id="scroll-until-here"></div>
-      </div>
-      <div className="chat__conversation-panel">
-        <div className="chat__conversation-panel__container">
-          <input 
-            className="chat__conversation-panel__input panel-item" 
-            onChange={ msgOnChange }
-            onKeyUp={ onInputKeyUp }
-            value={ msg }
-            placeholder="Type a message..."/>
-          <button 
-            className="chat__conversation-panel__button panel-item btn-icon send-message-button" 
-            onClick={ sendMessage }>
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true" data-reactid="1036">
-              <line x1="22" y1="2" x2="11" y2="13"></line>
-              <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
-            </svg>
-          </button>
+                  )
+                }
+                {
+                  (chat.type === "join" && 
+                    <div 
+                      className="chat__conversation-board__join-message-container" 
+                      key={`index-join-${index}`}>
+                        {chat.message}
+                    </div>
+                  )
+                }
+              </>
+            ))
+          }
+          <div id="scroll-until-here"></div>
+        </div>
+        <div className="chat__conversation-panel">
+          <div className="chat__conversation-panel__container">
+            <input 
+              className="chat__conversation-panel__input panel-item" 
+              onChange={ msgOnChange }
+              onKeyUp={ onInputKeyUp }
+              value={ msg }
+              placeholder="Type a message..."/>
+            <button 
+              className="chat__conversation-panel__button panel-item btn-icon send-message-button" 
+              onClick={ sendMessage }>
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true" data-reactid="1036">
+                <line x1="22" y1="2" x2="11" y2="13"></line>
+                <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+              </svg>
+            </button>
+          </div>
         </div>
       </div>
-    </div>
+      <div className="copyright">
+        Template Copyright (c) 2022 by <a href="https://codepen.io/abadu/pen/pGLrMQ">abadu</a> with personal modification.
+      </div>
+    </>
   );
 };
 

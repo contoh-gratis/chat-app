@@ -1,16 +1,20 @@
-import React from "react";
+import { React, lazy , Suspense } from "react";
 import { Routes, Route } from 'react-router-dom';
-import Homepage from './pages/Homepage/Homepage';
-import RoomChat from './pages/RoomChat/RoomChat';
+import Loader from './components/Loader';
 import './App.css';
+
+const Homepage = lazy(()=>import('./pages/Homepage/Homepage'))
+const RoomChat = lazy(()=>import('./pages/RoomChat/RoomChat'))
 
 const App = () => {
   return (
     <div className="App">
-      <Routes>
-        <Route path='' element={<Homepage />} />
-        <Route path="/:roomId" element={<RoomChat />} />
-      </Routes>
+      <Suspense fallback={<Loader />}>
+        <Routes>
+          <Route path='' element={<Homepage />} />
+          <Route path="/:roomId" element={<RoomChat />} />
+        </Routes>
+      </Suspense>
     </div>
   );
 }
