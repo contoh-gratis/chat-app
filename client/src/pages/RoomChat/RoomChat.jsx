@@ -142,10 +142,10 @@ const RoomChat = () => {
 
   return (
     <>
+      <div className="--dark-theme chat__conversation-title">
+        Room: {roomId}
+      </div>
       <div className="--dark-theme" id="chat">
-        <div className="chat__conversation-title">
-          Room: {roomId}
-        </div>
         <div className="chat__conversation-board">
           {
             chats.map((chat, index) => (
