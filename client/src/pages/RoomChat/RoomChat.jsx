@@ -144,7 +144,7 @@ const RoomChat = () => {
     <>
       <div className="--dark-theme" id="chat">
         <div className="chat__conversation-title">
-          {roomId}
+          Room: {roomId}
         </div>
         <div className="chat__conversation-board">
           {
