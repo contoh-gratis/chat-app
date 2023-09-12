@@ -82,7 +82,7 @@ const RoomChat = () => {
     }, 50);
   }, [count]);
 
-  const connectToRoom = (roomId) => {
+  const connectToRoom = () => {
     const callback = () => {
       addNotifJoinToChat('You joined');
     };
@@ -137,7 +137,7 @@ const RoomChat = () => {
 
   useEffect(() => {
     if (!user) return;
-    connectToRoom(roomId);
+    connectToRoom();
   }, [user]);
 
   return (
