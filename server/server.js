@@ -32,7 +32,7 @@ io.on("connection", socket => {
     const user = message.user;
     
     socket.to(room_id).emit("listen-room", "User " + user + " has left");
-    logger.info("User " + user + " has joined room " + room_id);
+    logger.info("User " + user + " has left room " + room_id);
   });
 
   socket.on("send-message", message => {
