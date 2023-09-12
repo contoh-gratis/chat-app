@@ -207,7 +207,7 @@ body {
   border-radius: 12px;
   padding: 0 1em;
   height: 55px;
-  margin: 0.5em 0 0;
+  margin: 0.5em 0.5em 0;
 }
 #chat .chat__conversation-panel__container {
   display: flex;
